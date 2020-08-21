@@ -72,3 +72,4 @@ wallet/
 
 ## Misc
 .DS_store
+config.json
