@@ -73,3 +73,7 @@ wallet/
 ## Misc
 .DS_store
 config.json
+
+## ignore contract WASM and ABI
+*.abi
+*.wasm  
