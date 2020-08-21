@@ -1,0 +1,57 @@
+version: "3.7"
+
+networks:
+  eosio:
+
+services:
+
+  # Nodeos
+  nodeos:
+    build: 
+      context: ./docker/
+      dockerfile: ./eosio.dockerfile
+    image: eosio:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./blockchain:/blockchain"
+    container_name: nodeos
+    networks:
+      - eosio
+    command: sudo /blockchain/scripts/nodeos.sh
+  
+  # Keosd
+  keosd:
+    image: eosio:latest
+    ports:
+      - 9876:9876
+    volumes:
+      - "./blockchain:/blockchain"
+    container_name: keosd
+    networks:
+      - eosio
+    command: sudo /blockchain/scripts/keosd.sh
+  
+  # Next.js
+  next:
+    image: node:12
+    ports:
+      - 3000:3000
+    volumes:
+      - "./webapp:/webapp"
+    container_name: nextjs
+    networks:
+      - eosio
+    command: bash -c "cd /webapp/ && npm install && npm run dev"
+
+  # Node.js
+  nodejs:
+    image: node:12
+    ports:
+      - 8080:8080
+    volumes:
+      - "./server:/server"
+    container_name: nodejs
+    networks:
+      - eosio
+    command: bash -c "cd /server/ && npm install && npm run start-watch"
