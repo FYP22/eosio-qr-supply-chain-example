@@ -36,7 +36,7 @@ int main() {
             if (data.length() > 0) {
                 auto j = json::parse(data);
                 if (j != last_scan) {
-                    std::cout << "Item scanned" << std::endl;
+                    std::cout << "Item ID: " << j["id"].get<std::string>() << std::endl;
                     cpr::Response r = cpr::Post(cpr::Url{"http://0.0.0.0:8080/api/update"},
                                                 cpr::Payload{
                                                         {"id", j["id"].get<std::string>()},

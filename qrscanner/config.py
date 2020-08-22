@@ -1,15 +1,14 @@
 import json
+import sys
 
 if __name__ == "__main__":
 
-    account = input('Enter in the account to allow actions: ')
-    location = input('Enter in location of scanner: ')
+    data = {}
 
-    with open('config.json', 'r') as config:
-        data = json.load(config)
+    location = sys.argv[2] + ' ' + sys.argv[3]
 
-    data['account'] = account
+    data['account'] = sys.argv[1]
     data['location'] = location
 
-    with open('config.json', 'w') as config:
+    with open('config.json', 'w+') as config:
         json.dump(data, config)

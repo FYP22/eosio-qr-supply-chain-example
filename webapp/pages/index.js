@@ -12,7 +12,7 @@ const Index = (props) => (
             <Row>
                 <Col>
                     <Navbar expand="lg" variant="light" bg="light">
-                        <Navbar.Brand href="#">Table</Navbar.Brand>
+                        <Navbar.Brand href="#">Location Table</Navbar.Brand>
                     </Navbar>
                 </Col>
             </Row>
