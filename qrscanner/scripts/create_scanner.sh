@@ -28,5 +28,6 @@ read -sp "Is this right? [y/n]   " confirm
 if [[ $confirm = y ]] ; then
     python3 config.py ${accountName} ${countryCode} ${region}
     mkdir build && cd build && \
-        cmake .. && make
+        cmake .. && \
+        cmake --build .
 fi
